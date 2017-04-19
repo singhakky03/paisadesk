@@ -24,6 +24,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 #haml a view templete engine
 gem 'haml'
+gem 'haml-rails'
+
+# Authentication Library devise
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -49,7 +53,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'annotate'
   gem 'awesome_print'
-  gem 'haml-rails'
   gem 'quiet_assets'
   gem 'mysql2', '~> 0.3.18'
 end

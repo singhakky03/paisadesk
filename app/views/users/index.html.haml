@@ -1,0 +1,12 @@
+%h2.sub-header Users
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th email
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td
+          %td  #{user.email}

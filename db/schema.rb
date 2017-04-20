@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170419161300) do
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
     t.boolean  "is_admin",               limit: 1
+    t.boolean  "banned",                 limit: 1
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
   end

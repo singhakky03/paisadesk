@@ -32,6 +32,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       #User type and other information
       t.boolean  :is_admin
+      t.boolean  :banned
 
       t.timestamps null: false
     end

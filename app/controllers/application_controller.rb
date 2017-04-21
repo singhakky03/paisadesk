@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   #before_action :authenticate_user!
 
+  def authenticate_admin
+    user_signed_in? and current_user.is_admin?
+  end
+
   private
   def after_sign_out_path_for(resource_or_scope)
     root_path

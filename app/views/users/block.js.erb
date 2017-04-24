@@ -1,0 +1,2 @@
+$("#newAction<%=@user.id%>").html("<%= escape_javascript link_to(@user.banned ? "Unblock" : "Block", @user.banned ? unblock_user_path(@user) : block_user_path(@user),remote: true) %>");
+

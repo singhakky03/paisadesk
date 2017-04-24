@@ -1,0 +1,7 @@
+%tr
+  %td #{user.id}
+  %td  #{user.email}
+  %td{id: "newAction#{user.id}"}
+    = link_to user.banned ? "Unblock" : "Block", user.banned ? unblock_user_path(user) : block_user_path(user),remote: true
+  %td
+    = link_to "Show", user_path(user)

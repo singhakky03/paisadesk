@@ -10,7 +10,12 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
   end
 
-  resources :users
+  resources :users do
+    member do
+      get :block
+      get :unblock
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

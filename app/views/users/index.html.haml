@@ -6,12 +6,7 @@
         %th #
         %th email
         %th Actions
+        %th
     %tbody
       - @users.each do |user|
-        %tr
-          %td
-          %td  #{user.email}
-          %td
-            = link_to user.banned ? "Unblock" : "Block"
-            |
-            = link_to "Show", user_path(user)
+        = render partial: "users", :locals => {:user => user}

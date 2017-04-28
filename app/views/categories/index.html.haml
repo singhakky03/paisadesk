@@ -1,0 +1,16 @@
+.container
+  .row
+    .col-md-2
+      .page-header
+        = image_tag @user.avatar.url(:thumb), :class => "img-thumbnail"
+        %h1 #{@user.name}
+      = link_to "New Categories", new_user_category_path, :class => "btn btn-primary btn-md"
+    .col-md-8
+      .page-header
+      %h2.page-header Categories
+      .row.placeholders
+        - @categories.each do |category|
+          .col-xs-6.col-sm-3.placeholder
+            %img.img-responsive{:alt => "Generic placeholder thumbnail", :height => "200", :src => "data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==", :width => "200"}/
+            %h4 #{category.name}
+            %span.text-muted #{category.category_type}

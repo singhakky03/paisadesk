@@ -1,0 +1,11 @@
+= form_for(@convention, :url => user_conventions_path(@user), html: {:class =>'form-signin', :multipart => true, :class =>'form-signin'}) do |f|
+  - if @convention.errors.present?
+    - @convention.errors.each do |k,val|
+      %p #{k} #{val}
+  %label amount
+  = f.text_field :amount, :class => "form-control", :placeholder => "Amount"
+  %label Date
+  = f.date_field :date, class: "form-control"
+  %label Category
+  = f.select :category_id, options_for_select(@categories.map{|c| [c.name, c.id]}, params[:category_id]),{ :include_blank => "Please select category"}, {:class => "form-control"}
+  = f.submit "Save", :class => "btn btn-lg btn-primary btn-block"

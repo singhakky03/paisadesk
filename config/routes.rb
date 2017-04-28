@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :users do
+    resources :categories
+    resources :conventions
     member do
       get :block
       get :unblock

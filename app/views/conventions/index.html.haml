@@ -1,0 +1,25 @@
+.container
+  .row
+    .col-md-2
+      .page-header
+        = image_tag @user.avatar.url(:thumb), :class => "img-thumbnail"
+        %h1 #{@user.name}
+        = link_to "New Convention", new_user_convention_path, :class => "btn btn-primary btn-md"
+    .col-md-8
+      .page-header
+      %h2.sub-header Conventions
+      .table-responsive
+        %table.table.table-striped
+          %thead
+            %tr
+              %th #
+              %th Amount
+              %th Category
+              %th Type
+          %tbody
+            - @conventions.each do |convention|
+              %tr
+                %td #{convention.id}
+                %td #{convention.amount}
+                %td  #{convention.category.name}
+                %td  #{convention.category.category_type}

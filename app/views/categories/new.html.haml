@@ -1,0 +1,9 @@
+= form_for(@category, :url => user_categories_path(@user), html: {:class =>'form-signin', :multipart => true, :class =>'form-signin'}) do |f|
+  - if @category.errors.present?
+    - @category.errors.each do |k,val|
+      %p #{k} #{val}
+  %label Category name
+  = f.text_field :name, :class => "form-control", :placeholder => "Category name"
+  %label Category Type
+  = f.select :category_type, Category::TYPE, {prompt: "Select"}, class: "form-control"
+  = f.submit "Save", :class => "btn btn-lg btn-primary btn-block"

@@ -1,4 +1,10 @@
-.page-header
-  = image_tag @user.avatar.url(:thumb), :class => "img-thumbnail"
-  %h1 #{@user.name}
+.container
+  .row
+    .col-md-2
+      .page-header
+        = image_tag @user.avatar.url(:thumb), :class => "img-thumbnail"
+        %h1 #{@user.name}
+    .col-md-8
+      .page-header
+      %h2.page-header Reports
 

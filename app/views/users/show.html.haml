@@ -1,10 +1,95 @@
+%script{:src => "https://code.highcharts.com/highcharts.js"}
+%script{:src => "https://code.highcharts.com/modules/exporting.js"}
 .container
   .row
     .col-md-2
       .page-header
         = image_tag @user.avatar.url(:thumb), :class => "img-thumbnail"
         %h1 #{@user.name}
-    .col-md-8
-      .page-header
-      %h2.page-header Reports
+        .row
+          #containerExp{:style => "min-width: 210px; height: 180px; max-width: 300px; "}
+          #containerPro{:style => "min-width: 210px; height: 180px; max-width: 300px; "}
+    .col-md-10
+      %h2 Transactions
+      - if @categories.present?
+        .table-responsive
+          %table.table.table-striped
+            %thead
+              %tr
+                %th #
+                %th Name
+                %th Type
+                %th Amount
+            %tbody
+              - @categories.each do |category|
+                %tr
+                  %td #{category.id}
+                  %td #{category.name}
+                  %td #{category.category_type}
+                  %td #{category.total(@user)}
 
+:javascript
+  Highcharts.chart('containerExp', {
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      title: {
+          text: 'Expense Category'
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                  style: {
+                      color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                  }
+              }
+          }
+      },
+      series: [{
+        name: 'Category',
+        colorByPoint: true,
+        data: #{@user.percent_json(@categories)[0].to_json}
+    }]
+  });
+  Highcharts.chart('containerPro', {
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      title: {
+          text: 'Income Category'
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                  style: {
+                      color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                  }
+              }
+          }
+      },
+      series: [{
+        name: 'Category',
+        colorByPoint: true,
+        data: #{@user.percent_json(@categories)[1].to_json}
+    }]
+  });
